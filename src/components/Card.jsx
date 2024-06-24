@@ -3,30 +3,21 @@ import React from 'react'
 const Card = () => {
  
   return (
-    <div> 
-
-      {/* <div className="card card-compact w-72 bg-base-100 shadow-xl">
+    <div>
+      <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
-          />
+          <img src="{img}" alt="{title}" />
         </figure>
-       
-       
         <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 className="card-title">{title}</h2>
+          <p>{title}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary">Order Now</button>
           </div>
         </div>
       </div>
-       */}
-      
-      
 
-      <div className="flex flex-wrap justify-center space-x-4 space-y-4">
+      {/* <div className="flex flex-wrap justify-center space-x-4 space-y-4">
   <div className="card card-compact w-full sm:w-60 bg-base-100 shadow-xl">
     <figure>
       <img src="https://food-cms.grab.com/compressed_webp/items/THITE2023050315204897650/detail/menueditor_item_eaad8600b59b4f1eb8ff0d7ff1602074_1683127223272980042.webp" alt="Shoes" />
@@ -88,15 +79,7 @@ const Card = () => {
     </div>
   </div>
 
-</div>
-
-  
-
-
-
-
-
-
+</div> */}
     </div>
   );
 }

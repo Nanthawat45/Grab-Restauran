@@ -8,11 +8,12 @@ import Card2 from "./components/Card2";
 function App() {
   return (
     <>
-    
+    <div className="container mx-auto">
       <Header />
       <Search/>
-      <Card />
-      <Card2/>
+      {/* <Card />
+      <Card2/> */}
+      </div>
     </>
   );
 }
