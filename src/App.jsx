@@ -1,18 +1,36 @@
+// import { useState } from "react";
 import "./App.css";
-import Search from "./components/Search";
 import Restaurant from "./components/Restaurant";
+import Search from "./components/Search";
 import Header from "./components/Header";
-import Card from "./components/Card";
-import Card2 from "./components/Card2";
+import { useEffect, useState } from "react";
+// import Card from "./components/Card";
+// import Card2 from "./components/Card2";
 
 function App() {
+  
+useEffect(() => {
+  fetch("http://localhost:5000/restaurants")
+    .then((res) => {
+      return res.json();
+    })
+    .then((response) => {
+      setRestaurants(response);
+      setFilteredReastaurants(response);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}, []);
+
   return (
     <>
-    <div className="container mx-auto">
-      <Header />
-      <Search/>
-      {/* <Card />
-      <Card2/> */}
+      <div className="container mx-auto">
+        <Header />
+        <Search />
+        {/* <Card2/> */}
+        <Restaurant restaurant={Restaurant}/>
+        setFilteredReastaurants={setFilteredReastaurants}
       </div>
     </>
   );
