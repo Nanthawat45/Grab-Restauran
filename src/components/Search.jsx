@@ -12,11 +12,11 @@ const Search = ({restaurants, setFilteredRestaurants}) => {
     }
     const result = restaurants.fillter((restaurant) => {
       return (
-        restaurant.title.toLowerCase().includes(keyword.toLocaleLowerCase()) ||
-        restaurant.type.toLowerCase().includes(keyword.toLocaleLowerCase())
+        restaurant.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        restaurant.type.toLowerCase().includes(keyword.toLowerCase())
       );
     });
-    console.log(result);
+    // console.log(result);
     setFilteredRestaurants(result);
   };
 

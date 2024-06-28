@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Search from "../components/Search";
 import Restaurants from "../components/Restaurants";
+import Box from "../components/Box";
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
@@ -25,7 +26,7 @@ export default function Home() {
       <div className="container mx-auto">
         <Header />
         <Search restaurants={restaurants} setFilteredReastaurants={setFilteredReastaurants} />
-        <Restaurants restaurant={filteredRestaurants} />
+        <Restaurants restaurants={filteredRestaurants} />
       </div>
     </>
   );
