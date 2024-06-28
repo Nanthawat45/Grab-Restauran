@@ -9,31 +9,9 @@ import { useEffect, useState } from "react";
 
 function App() {
   
-useEffect(() => {
-  fetch("http://localhost:5000/restaurants")
-    .then((res) => {
-      return res.json();
-    })
-    .then((response) => {
-      setRestaurants(response);
-      setFilteredReastaurants(response);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-}, []);
 
-  return (
-    <>
-      <div className="container mx-auto">
-        <Header />
-        <Search />
-        {/* <Card2/> */}
-        <Restaurant restaurant={Restaurant}/>
-        setFilteredReastaurants={setFilteredReastaurants}
-      </div>
-    </>
-  );
+
+
 }
 
 export default App;

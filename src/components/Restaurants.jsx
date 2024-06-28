@@ -1,37 +1,17 @@
 import React from "react";
-import Card from "./Card";
-import { useEffect, useState } from "react";
+import Box from "./Box";
 
-// const Restaurants = () => {
-//   const [restaurants, setRestaurants] = useState([]);
-//   useEffect(() => {
-//     fetch("http://localhost:5000/restaurants").then((res) => {
-//       return res.json();
-//     });
-//   }, []);
-useEffect(() => {
-    fetch("http://localhost:5000/restaurants")
-      .then((res) => {
-        return res.json();
-      })
-      .then((response) => {
-        setRestos(response);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
-
+const Restaurants = ({ restaurants }) => {
   return (
     <div className="flex">
-      <div className="flex flex-warp justify-ceter gap-4">
+      <div className="flex flex-warp justify-center gap-4">
         {restaurants &&
           restaurants.map((restaurant) => {
             return (
-              <Card
+              <Box
                 key={restaurant.id}
-                img={restaurant.img}
                 title={restaurant.title}
+                img={restaurant.img}
                 type={restaurant.type}
               />
             );
@@ -39,6 +19,6 @@ useEffect(() => {
       </div>
     </div>
   );
-//};
+};
 
 export default Restaurants;
