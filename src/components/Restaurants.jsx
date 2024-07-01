@@ -9,6 +9,7 @@ const Restaurants = ({ restaurants }) => {
           return (
             <Box
               key={restaurant.id}
+              id={restaurant.id}
               title={restaurant.title}
               img={restaurant.img}
               type={restaurant.type}

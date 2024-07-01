@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import Restaurants from "../components/Restaurants";
 import Box from "../components/Box";
 
+
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredReastaurants] = useState([]);
@@ -31,3 +32,4 @@ export default function Home() {
     </>
   );
 }
+// export default Home;

@@ -1,10 +1,9 @@
 import React from 'react'
-import { useEffect, useState } from "react";
-
+import {useState } from "react";
 const Search = ({restaurants, setFilteredRestaurants}) => {
   const [keyword, setKeyword] = useState("");
 
-  const handleChange = async (e) =>{
+  const handleChange =  (e) =>{
     setKeyword(e.target.value);
     if (e.target.value ===""){
       setFilteredRestaurants(restaurants);
