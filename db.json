@@ -32,21 +32,21 @@
     },
     {
       "id": "6",
-      "title": "ข้าวกระเพราหมูสัพไข่ข้น",
-      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2023050315163680050/detail/menueditor_item_0ee9acd64be6435b8c35e96e75270a5b_1683126837176090546.webp",
-      "type": "อาหารตามสั่ง"
+      "title": "ข้าวมันไก่ต้ม",
+      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2020032412195449051/detail/menueditor_item_654a1e9ba95c45b08d6e02cb3d125564_1690190566168200391.webp",
+      "type": "โปรดระบุ หากต้องการ ซีอิ๊วดำ, พริก, ขิง. เสิร์ฟพร้อมน้ำจิ้มและน้ำซุป Please specify if need sweet soy sauce, chilli, ginger. Served with sauce and soup"
     },
     {
       "id": "7",
-      "title": "ข้าวกระเพราหมูสัพไข่ข้น",
-      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2023050315163680050/detail/menueditor_item_0ee9acd64be6435b8c35e96e75270a5b_1683126837176090546.webp",
-      "type": "อาหารตามสั่ง"
+      "title": "ข้าวมันไก่ทอด",
+      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2020032412175815333/detail/menueditor_item_99d5cc6ae88546a5a7d29a09514a9b8e_1690191016775341840.webp",
+      "type": "โปรดระบุ หากต้องการ ซีอิ๊วดำ, พริก, ขิง. เสิร์ฟพร้อมน้ำจิ้มและน้ำซุป Please specify if need sweet soy sauce, chilli, ginger. Served with sauce and soup"
     },
     {
       "id": "8",
-      "title": "ข้าวกระเพราหมูสัพไข่ข้น",
-      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2023050315163680050/detail/menueditor_item_0ee9acd64be6435b8c35e96e75270a5b_1683126837176090546.webp",
-      "type": "อาหารตามสั่ง"
+      "title": "ข้าวมันไก่ ผสม ต้มทอด",
+      "img":"https://food-cms.grab.com/compressed_webp/items/THITE2020032412214922633/detail/menueditor_item_5162539a4894431892d9429d417bc890_1690190826793908408.webp" ,
+      "type": "โปรดระบุ หากต้องการ ซีอิ๊วดำ, พริก, ขิง. เสิร์ฟพร้อมน้ำจิ้มและน้ำซุป Please specify if need sweet soy sauce, chilli, ginger. Served with sauce and soup"
     },
     {
       "id": "9",
@@ -86,12 +86,6 @@
     },
     {
       "id": "15",
-      "title": "ข้าวกระเพราหมูสัพไข่ข้น",
-      "img": "https://food-cms.grab.com/compressed_webp/items/THITE2023050315163680050/detail/menueditor_item_0ee9acd64be6435b8c35e96e75270a5b_1683126837176090546.webp",
-      "type": "อาหารตามสั่ง"
-    },
-    {
-      "id": "16",
       "title": "ข้าวกระเพราหมูสัพไข่ข้น",
       "img": "https://food-cms.grab.com/compressed_webp/items/THITE2023050315163680050/detail/menueditor_item_0ee9acd64be6435b8c35e96e75270a5b_1683126837176090546.webp",
       "type": "อาหารตามสั่ง"
