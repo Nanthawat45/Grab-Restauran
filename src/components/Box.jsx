@@ -23,7 +23,7 @@ const Box = ({id, img, title, type }) => {
         <h2 className="card-title">{title}</h2>
         <p>{type}</p>
         <div className="card-actions justify-end">
-          <a href={`/edit${id}`} className="btn btn-primary">Edit</a>
+          <a href={`/edit/${id}`} className="btn btn-primary">Edit</a>
           <button className="btn btn-error" onClick={()=>handleDelete(id)}>Delete</button>
         </div>
       </div>
