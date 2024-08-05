@@ -1,10 +1,56 @@
+import { useState } from "react";
+import AuthService from "../services/auth.service";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
-    const [user, setUser] = useState({
-      username: "",
-      password: "",
-    });
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  // const [login] = useAuthContext();
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setUser((user) => ({ ...user, [name]: value }));
+  // };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setUser((user) => ({ ...user, [name]: value }));
+    };
+     const { login } = useAuthContext();
+     const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const currentUser = await AuthService.login(user.username, user.password);
+      //console.log(currentUser);
+      if (currentUser.status === 200) {
+        //login(currentUser.data);
+        Swal.fire({
+          title: "User Login",
+          text: "Login successfully!",
+          icon: "success",
+        });
+
+        setUser({
+          username: "",
+          password: "",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "User Login",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
+    }
+  };
   return (
     <div className="container mx-auto mt-4 max-w-96 my-auto">
       <label className="input input-bordered flex items-center gap-2">
@@ -16,7 +62,15 @@ const Login = () => {
         >
           <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
         </svg>
-        <input type="text" className="grow" placeholder="Username" />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className="grow"
+          value={user.username}
+          onChange={handleChange}
+          //placeholder="Username"
+        />
       </label>
       <label className="input input-bordered flex items-center gap-2">
         <svg
@@ -31,10 +85,21 @@ const Login = () => {
             clipRule="evenodd"
           />
         </svg>
-        <input type="password" className="grow" value="password" />
+        <input 
+        type="password" 
+        id="password"
+        name="password"
+        className="grow" 
+        value={user.password}
+        onChange={handleChange} 
+        />
       </label>
-      <button className="btn btn-outline btn-info">Login</button>
-      <button className="btn btn-outline btn-error">Cancel</button>
+      <button className="btn btn-outline btn-info" onClick={handleSubmit}>
+        Login
+      </button>
+      <button className="btn btn-outline btn-error">
+        Cancel
+      </button>
     </div>
   );
 };

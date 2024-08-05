@@ -64,7 +64,9 @@ const Register = () => {
           type="text"
           className="grow"
           placeholder="Username"
+          id="username"
           name="username"
+          value={user.username}
           onChange={handleChange}
         />
       </label>

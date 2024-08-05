@@ -1,8 +1,15 @@
-import React from "react";
-import LoginButton from "./LoginButton";
+import{useState} from "react";
+import UserProfile from "./UserProfile";
+import LoginButt from "./LoginButton"
+import RegisterButton from "./RegisterButton";
+import { useAuthContext } from "../context/AuthContext";
+//import React from "react";
+
+
 
 const Navbar = () => {
-  const user = "null";
+  const {user} = useAuthContext();
+  console.log("user,",user);
   return (
     <div>
       <div className="navbar bg-base-100">
