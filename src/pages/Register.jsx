@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service"
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -105,14 +106,17 @@ const Register = () => {
         </svg>
         <input
           type="password"
-          className="grow"
-          value="password"
+          id="password"
           name="password"
+          className="grow"
+          value={user.password}
           onChange={handleChange}
         />
       </label>
 
-      <button className="btn btn-outline btn-info">Register</button>
+      <button className="btn btn-outline btn-info" onClick={handleSubmit}>
+        Register
+      </button>
       <button className="btn btn-outline btn-error">Cancel</button>
     </div>
   );

@@ -29,6 +29,6 @@ const Router = createBrowserRouter([
         element: <Register />,
       },
     ],
-  },  
+  },
 ]);
 export default Router;
