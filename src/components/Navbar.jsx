@@ -1,15 +1,15 @@
 import{useState} from "react";
 import UserProfile from "./UserProfile";
-import LoginButt from "./LoginButton"
+import LoginButton from "./LoginButton"
 import RegisterButton from "./RegisterButton";
 import { useAuthContext } from "../context/AuthContext";
-//import React from "react";
+
 
 
 
 const Navbar = () => {
   const {user} = useAuthContext();
-  console.log("user,",user);
+  
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -55,6 +55,31 @@ const Navbar = () => {
                 />
               </div>
             </div>
+          </div>
+        
+    <div className="navbar-end space-x-2">
+      {user &&(
+        <div>
+          Welcome,{""}
+          <span className="text-red-500">
+            {user.username}{""}
+            {user.role.map((role)=>{
+              return(
+                <div className={"badge text-xs badge-accent"}>{role}</div>
+              );
+            })}
+          </span>
+        </div>
+      )}
+      {/* {user ?(
+        <UserProfile/>
+      ): (<div className="space-x-2">
+        <RegisterButton/>
+        <LoginButton/>
+      </div>
+    )} */}
+    
+
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
@@ -76,7 +101,7 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* <div className="navbar-end">
+      <div className="navbar-end">
         {user ?(
           <UserProfile/>
         ):(
@@ -85,7 +110,7 @@ const Navbar = () => {
             <LoginButton/>
           </div>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
