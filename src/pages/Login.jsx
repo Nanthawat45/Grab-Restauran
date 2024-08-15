@@ -49,13 +49,18 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       Swal.fire({
         title: "User Login",
         text: error?.response?.data?.message || error.message,
         icon: "error",
       });
     }
+  };
+
+  const handleCancel = () => {
+    setUser({ username: "", userPassword: "" });
+    navigate("/");
   };
   return (
     <div className="container mx-auto mt-4 max-w-96 my-auto">
@@ -70,9 +75,9 @@ const Login = () => {
         </svg>
         <input
           type="text"
+          className="grow"
           id="username"
           name="username"
-          className="grow"
           value={user.username}
           onChange={handleChange}
           //placeholder="Username"
@@ -103,7 +108,7 @@ const Login = () => {
       <button className="btn btn-outline btn-info" onClick={handleSubmit}>
         Login
       </button>
-      <button className="btn btn-outline btn-error">
+      <button className="btn btn-outline btn-error" onClick={handleCancel}>
         Cancel
       </button>
     </div>

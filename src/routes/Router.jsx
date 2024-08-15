@@ -23,7 +23,8 @@ const Router = createBrowserRouter([
         path: "edit/:id",
         element: <Edit />,
       },
-      { path: "login", element: <Login /> },
+      { path: "login", 
+        element: <Login /> },
       {
         path: "register",
         element: <Register />,

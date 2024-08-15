@@ -117,7 +117,9 @@ const Register = () => {
       <button className="btn btn-outline btn-info" onClick={handleSubmit}>
         Register
       </button>
-      <button className="btn btn-outline btn-error">Cancel</button>
+      <button className="btn btn-outline btn-error">
+        Cancel
+        </button>
     </div>
   );
 };
