@@ -27,7 +27,7 @@ const Register = () => {
                 text: error.message,
                 icon:"success",
             });
-            serUser({
+            setUser({
                 username:"",
                 email:"",
                 password:"",
@@ -117,9 +117,9 @@ const Register = () => {
       <button className="btn btn-outline btn-info" onClick={handleSubmit}>
         Register
       </button>
-      <button className="btn btn-outline btn-error">
+      <button className="btn btn-outline btn-error" onClick={handleCancel}>
         Cancel
-        </button>
+      </button>
     </div>
   );
 };

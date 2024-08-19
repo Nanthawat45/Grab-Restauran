@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import RestaurantService from "../services/restaurant.service";
+import Swal from "sweetalert2";
 
 const Edit = () => {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState({
-    title: "",
+    name: "",
     type: "",
-    img: "",
+    imageUrl: "",
   });
   useEffect(() => {
-    fetch("http://localhost:5000/restaurants/" + id)
-      .then((res) => {
-        return res.json();
-      })
-      .then((response) => {
-        setRestaurant(response);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    RestaurantService.getRestarantById(id).then((response)=>{
+      if(response.status === 200){
+        setRestaurant(response.data);
+      }
+    })
   }, [id]);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,16 +24,21 @@ const Edit = () => {
   const handSubmit = async () => {
     try {
       //TODO
-      const response = await fetch("http://localhost:5000/restaurants/" + id, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(restaurant),})
-      if (response.ok) {
-        //TODO
-        window.alert("success")
+      const response = await  RestaurantService.editRestaurant(id,restaurant);
+      if (response.status === 200) {
+        Swal.fire({
+          title: "Restaurant update",
+          text: response.data.message,
+          icon:"success",
+        });
+        navigate("/")
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Restaurant Update",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
     }
   };
 
@@ -52,9 +54,9 @@ const Edit = () => {
             type="text"
             className="grow"
             placeholder="Restaurant Name"
-            name="title"
+            name="name"
             onChange={handleChange}
-            value={restaurant.title}
+            value={restaurant.name}
           />
         </label>
         <label className="input input-bordered flex items-center gap-2">
@@ -74,9 +76,9 @@ const Edit = () => {
             type="text"
             className="grow"
             placeholder="Restaurant Name"
-            name="img"
+            name="imageUrl"
             onChange={handleChange}
-            value={restaurant.img}
+            value={restaurant.imageUrl}
           />
         </label>
         <button className="btn btn-success" onClick={handSubmit}>
