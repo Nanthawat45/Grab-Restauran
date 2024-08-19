@@ -1,5 +1,7 @@
 //import React from 'react'
 import { useState } from 'react'
+import Swal from 'sweetalert2';
+import RestaurantService from '../services/restaurant.service';
 
 const Add = () => {
   const [restaurant, setRestaurant] =useState({
@@ -13,20 +15,26 @@ const Add = () => {
   }
   const handSubmit = async () =>{
     try {
-      const response = await fetch("http://localhost:5000/restaurants/",{
-        method:"POST",
-        body: JSON.stringify(restaurant),
-      });
-      if(response.ok){
-        alert("Restaurant added successfully!");
+      const response = await RestaurantService.insertRestaurant
+      (restaurant)
+      if(response === 200){
+        Swal.fire({
+          title: "Add Restaurant",
+          text: "Restaurant added successfully",
+          icon: "success",
+        });
         setRestaurant({
-          title: "",
-          type: "",
-          img: "",
+          name:"",
+          type:"",
+          imageUrl:"",
         });
       }
     }catch(error){
-      console.log(error);
+      Swal.fire({
+        title: "Add Restaurant",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
     }
   }
   return (

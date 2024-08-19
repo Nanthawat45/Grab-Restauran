@@ -4,15 +4,20 @@ import RestaurantService from "../services/restaurant.service";
 const Box = ({id, imageUrl, name, type }) => {
   const handleDelete = async (id) =>{
     try {
-      const response = await fetch("http://localhost:5000/restaurants/" + id, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        alert("Restaurant delete successfully!");
-      window.location.reload()
+      const response = await  RestaurantService.editRestaurant(id,response)
+    if(response === 200){
+        Swal.fire({
+          title: "Restaurant update",
+          text: response.data.message,
+          icon: "success",
+        });
       }
-    } catch (error) {
-      console.log(error);
+    }catch(error){
+      Swal.fire({
+        title: "Add Restaurant",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
     };
   }
   return (
