@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../services/auth.service"
+import AuthService from "../services/auth.service";
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -14,33 +14,32 @@ const Register = () => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-  const handleSubmit = async() => {
-    try{
-        const register = await AuthService.register(
-            user.username, 
-            user.email, 
-            user.password
-        );
-        if(register.status === 200){
-            Swal.fire({
-                title:"User Registration",
-                text: error.message,
-                icon:"success",
-            });
-            setUser({
-                username:"",
-                email:"",
-                password:"",
-            });
-            navigate("/login");
-        }
-    }catch(error){
-        console.log(error);
+  const handleSubmit = async () => {
+    try {
+      const register = await AuthService.register(
+        user.username,
+        user.email,
+        user.password
+      );
+      if (register.status === 200) {
         Swal.fire({
-            title:"User Registration",
-            text: error.message || error.message,
-            icon: "error",
-        })
+          title: "User Registration",
+          text: register.data.message,
+          icon: "success",
+        });
+        setUser({
+          username: "",
+          email: "",
+          password: "",
+        });
+        navigate("/login");
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "User Registration",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
     }
   };
   const handleCancel = () => {

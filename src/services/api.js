@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseURL = import.meta.env.VITE_BASE_URL;
-import TokenService from "./token.service"
+import TokenService from "./token.service";
 const instance = axios.create({
   baseURL: baseURL,
   headers: {
@@ -8,15 +8,17 @@ const instance = axios.create({
   },
 });
 //add interceptor to request object
-instance.interceptors.request.use((config)=>{
-  const token = TokenService.getLocalAccessToke();
-  if(token){
-    config.headers['x-access-token'] = token;
+instance.interceptors.request.use(
+  (config) => {
+    const token = TokenService.getLocalAccessToken();
+    if (token) {
+      config.headers["x-access-token"] = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-},
-(error) => {
-  return Promise.reject(error);
-});
+);
 
 export default instance;

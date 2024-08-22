@@ -1,15 +1,27 @@
-import { useState } from "react";
+import React from "react";
+import Title from "./Title";
+import Search from "./Search";
 import UserProfile from "./UserProfile";
-import LoginButton from "./LoginButton"
+import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
 import { useAuthContext } from "../context/AuthContext";
-
-
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { user, logout } = useAuthContext();
-  console.log("user", user);
+  const { user } = useAuthContext();
+  const menus = {
+    ROLES_ADMIN: [
+      { name: "Add restaurant", link: "/add" },
+      { name: "Search", link: "/" },
+      { name: "Dashboard", link: "/dashboard" },
+    ],
+    ROLES_USER: [{ name: "Search", Link: "/add" }],
+    ROLES_MODERATOR: [
+      { name: "Add restaurant", link: "/add" },
+      { name: "Search", link: "/" },
+    ],
+  };
+  //console.log("user", user);
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -30,16 +42,25 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <div className="flex-1">
+
+        {user &&
+          menus[user.roles[0]].map((menuItem) => (
+            <li key={menuItem.name}>
+              <a href={menuItem.link}>{menuItem.name}</a>
+            </li>
+          ))}
+
+
+        {/* <div className="flex-1">
           <a className="btn btn-ghost text-xl" href="/">
             Grab Restaurant
           </a>          <a className="btn btn-ghost text-xl" href="/Add">
             Add Restaurant
           </a>
-        </div>
+        </div> */}
         <div className="navbar-end">
           {user ? (
-            <UserProfile logout={logout}/>
+            <UserProfile logout={logout} />
           ) : (
             <div className="space-x-2 flex">
               <RegisterButton />
@@ -48,8 +69,6 @@ const Navbar = () => {
           )}
         </div>
       </div>
-
-
     </div>
   );
 };
