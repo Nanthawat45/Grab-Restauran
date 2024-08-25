@@ -1,15 +1,18 @@
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -42,12 +45,14 @@ const Register = () => {
       });
     }
   };
+
   const handleCancel = () => {
     setUser({
       username: "",
       email: "",
       password: "",
     });
+    navigate("/");
   };
   return (
     <div className="container mx-auto mt-4 max-w-96 my-auto">
@@ -68,6 +73,7 @@ const Register = () => {
           name="username"
           value={user.username}
           onChange={handleChange}
+          required
         />
       </label>
 
@@ -87,6 +93,8 @@ const Register = () => {
           placeholder="Email"
           name="email"
           onChange={handleChange}
+          value={user.email}
+          required
         />
       </label>
 
@@ -110,6 +118,7 @@ const Register = () => {
           className="grow"
           value={user.password}
           onChange={handleChange}
+          required
         />
       </label>
 

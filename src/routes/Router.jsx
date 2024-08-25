@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import {lazy} from "react"
-const Home = lazy
+//const Home = lazy
 import Add from "../pages/Add.jsx";
 import Home from "../pages/Home.jsx";
 import Edit from "../pages/Edit.jsx";

@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "./Box";
+import { useState, useEffect } from "react";
 
 const Restaurants = ({ restaurants }) => {
   return (
@@ -10,8 +11,8 @@ const Restaurants = ({ restaurants }) => {
             <Box
               key={restaurant.id}
               id={restaurant.id}
-              title={restaurant.title}
-              img={restaurant.img}
+              imageUrl={restaurant.img}
+              name={restaurant.name}
               type={restaurant.type}
             />
           );

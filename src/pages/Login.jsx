@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect} from "react";
+import { useState } from "react";
 import AuthService from "../services/auth.service";
-import React from "react";
+import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useAuthContext } from "../context/AuthContext";
+
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -32,7 +33,11 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const currentUser = await AuthService.login(user.username, user.password);
+      const currentUser = await AuthService.login(
+        user.username, 
+        user.password
+      );
+      
       console.log(currentUser);
       if (currentUser.status === 200) {
         login(currentUser.data);
