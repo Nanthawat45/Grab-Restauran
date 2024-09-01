@@ -8,26 +8,18 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const { user, logout } = useAuthContext();
   const menus = {
-    //   ROLES_ADMIN: [{ name: "Add Restaurant", link: "/add" }],
-    //   ROLES_MODERATOR: [{ name: "Add Restaurant", link: "/add" }],
-    //   ROLES_USER: [],
-    // };
-
     ROLES_ADMIN: [
       { name: "Add restaurant", link: "/add" },
-     { name: "Search", link: "/" },
-     { name: "Dashboard", link: "/dashboard" },
+
+      { name: "Home", link: "/" },
     ],
-    ROLES_USER: [{ name: "Search", link: "/add" }],
-    ROLES_MODERATOR: [
+    ROLES_USER: [
+      { name: "Home", link: "/" }
+    ],
+    ROLE_MODERATOR: [
       { name: "Add restaurant", link: "/add" },
-      { name: "Search", link: "/" },
+      { name: "Home", link: "/" },
     ],
-  };
-  const roleAbbreviations = {
-    ROLES_ADMIN: "ADMIN",
-    ROLES_MODERATOR: "MOD",
-    ROLES_USER: "USER",
   };
   //console.log("user", user);
   return (
@@ -50,43 +42,42 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-
-        {user &&
-          menus[user.roles[0]].map((menuItem) => (
-            <li key={menuItem.name}>
-              <a 
-              href={menuItem.link}
-              >
-                {menuItem.name}{" "}
-                </a>
-            </li>
-          ))}
-        <div className="navbar-end space-x-2">
-        {user &&(
-          <div className="text-center">
-            welcome : <span className="font-medium"></span>
-            <div className="space-x-1 font-normal">
-              {user.roles.map((role, index) =>(
-                <span key={index} className="badge badge-primary badge-outline text-xs"
+        <ul className="menu menu-horizontal px-1">      
+          
+        
+           {user &&
+          //ถ้า menus user.ROLE_ADMIN role ตำแหน่งที่ 1 มาจาก user 
+          
+            menus[user.roles[0]].map((menuItem) => (             
+              <li key={menuItem.name}>
+                <a
+                  href={menuItem.link}
+                  className="text-white hover:text-gray-300"
                 >
-                  {roleAbbreviations[role]}
-                </span>
-              ))}
+                  {menuItem.name}{" "}
+                </a>
+              </li>
+            ))}            
+        </ul>
+        <div className="navbar-end space-x-2">
+          {user && (
+            <div className="text-center">
+              welcome : <span className="font-medium">{user.username}</span>
+              <div className="space-x-1 font-normal">
+                {user.roles.map((role, index) => {
+                  return (
+                  <span
+                    key={index}
+                    className="badge badge-primary badge-outline text-xs"
+                  >
+                    {role}
+                  </span>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}</div>
-
-      
-
-
-        {/* <div className="flex-1">
-          <a className="btn btn-ghost text-xl" href="/">
-            Grab Restaurant
-          </a>          <a className="btn btn-ghost text-xl" href="/Add">
-            Add Restaurant
-          </a>
-        </div> */}
-
+          )}
+        </div>
 
         <div className="navbar-end">
           {user ? (

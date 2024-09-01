@@ -10,19 +10,20 @@ export default function Home() {
   useEffect(() => {
     const getRestaurants = async ()=>{
       try {
-      const response = await RestaurantService.addRestaurant();
+        //เรียกใช้ getAllRestaurant() จาก service ไม่ใช่ getRestaurants ที่เป็น const getRestaurant
+      const response = await RestaurantService.getAllRestaurant();
       if(response.status === 200) {
         setRestaurants(response.data);
         setFilteredRestaurants(response.data);
       }
     } catch (error){
       Swal.fire({
-        titie: "Get All Restaurant",
-        text: error?.response?.data?.message || 
-        error.message,icon:"error",
+        title: "Get All Restaurant",
+        text: error?.response?.data?.message || error.message,
+        icon:"error",  
       });
     }
-    };
+  };
     getRestaurants();
   }, []);
 

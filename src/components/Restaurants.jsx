@@ -11,7 +11,9 @@ const Restaurants = ({ restaurants }) => {
             <Box
               key={restaurant.id}
               id={restaurant.id}
-              imageUrl={restaurant.img}
+              //เปลี่ยนชื่อด้วนะจ๊าสาวน้อย imageUrl เนอะ ไม่ใช่ img
+              imageUrl={restaurant.imageUrl}
+              
               name={restaurant.name}
               type={restaurant.type}
             />

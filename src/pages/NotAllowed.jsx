@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NotAllowed = () => {
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(10);
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/");
-    }, 5000);
+    }, 10000);
 
     const constDown = setInterval(() => {
       setCounter((prevCounter) => {
@@ -33,6 +33,7 @@ const NotAllowed = () => {
             <h1 className="text-5xl font-bold">
               Access <span className="text-red-800">denied!!!</span>
             </h1>
+            <img src={imgg} alt="pictrue not found" />
             <p className="pt-8">
               To access this page, you must log in with a higher level account.
             </p>

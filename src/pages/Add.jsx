@@ -6,12 +6,14 @@ import RestaurantService from '../services/restaurant.service';
 import { useAuthContext } from "../context/AuthContext";
 
 const Add = () => {
-  const navigate = useNavigate();
+  
   const [restaurant, setRestaurant] =useState({
-    title:"",
+    //มันเป็น name ไม่ใช่ title มันไม่ตรงกับฐานข้อมูลแล้วมันจะ แอดข้อมูลเข้าไปได้ไหมล่าาา!
+    name:"",
     type:"",
     imageUrl:"",
   });
+  const navigate = useNavigate();
   const handleChange =(e) =>{
     const {name, value} = e.target;
     
@@ -20,22 +22,23 @@ const Add = () => {
   const handSubmit = async (e) =>{
     e.preventDefault();
     try {
-      const response = await RestaurantService.addRestaurant
-      (restaurant)
+      const response = await RestaurantService.addRestaurant(restaurant);
+      console.log(response);
+      
       if(response.status === 200){
         Swal.fire({
           title: "Add Restaurant",
           text: "Restaurant added successfully",
           icon: "success",
         }) .then(() => {
-          setRestaurant({ name: "", type: "", imgUrl: "" });
+          setRestaurant({ name: "", type: "", imageUrl: "" });
           navigate("/");
         });
       }
       
     }catch(error){
       Swal.fire({
-        title: "Add Restaurant",
+        title: "Fail to add Restaurant",
         text: error?.response?.data?.message || error.message,
         icon: "error",
       });
@@ -51,11 +54,13 @@ const Add = () => {
           Title
           <input
             type="text"
+            required
+            id="name"
             className="grow"
             placeholder="Restaurant Name"
-            name="title"
+            name="name"
             onChange={handleChange}
-            value={restaurant.title}
+            value={restaurant.name}
           />
         </label>
         <label className="input input-bordered flex items-center gap-2">
@@ -65,15 +70,24 @@ const Add = () => {
             className="grow"
             placeholder="Restaurant Name"
             name="type"
+            id="type"
             onChange={handleChange}
             value={restaurant.type}
           />
         </label>
+         
+           <h3 htmlFor="imageUrl">Image</h3>
+           {restaurant.imageUrl && (
+                        <div className="flex items-center gap-2 py-4">
+                          <img src={restaurant.imageUrl} className="h-32" alt="" />
+                        </div>
+                      )}
         <label className="input input-bordered flex items-center gap-2">
+       
           img
           <input
             name="imageUrl"
-            id="imgInput"
+            id="imageUrl"
             type="text"
             placeholder="Input image link here :"
             className="input input-bordered w-full max-w-lg my-3"

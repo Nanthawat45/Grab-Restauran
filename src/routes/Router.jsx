@@ -1,15 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
-import {lazy} from "react"
-//const Home = lazy
-import Add from "../pages/Add.jsx";
-import Home from "../pages/Home.jsx";
-import Edit from "../pages/Edit.jsx";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
+import { lazy } from "react";
+
+// import Add from "../pages/Add.jsx";
+const Add = lazy(() => import("../pages/Add.jsx"));
+// import Home from "../pages/Home.jsx";
+const Home = lazy(() => import("../pages/Home.jsx"));
+// import Edit from "../pages/Edit.jsx";
+const Edit = lazy(() => import("../pages/Edit.jsx"));
+// import Login from "../pages/Login.jsx";
+const Login = lazy(() => import("../pages/Login.jsx"));
+// import Register from "../pages/Register.jsx";
+const Register = lazy(() => import("../pages/Register.jsx"));
+// import UserProfile from "../pages/UserProfile.jsx";
+const UserProfile = lazy(() => import("../pages/UserProfile.jsx"));
 import Layout from "../components/Layout.jsx";
 import ModOrAdminPage from "../pages/ModOrAdminPage.jsx";
 import NotAllowed from "../pages/NotAllowed.jsx";
-//import UserPage from "../pages/UserPage.jsx";
+
+
 
 const Router = createBrowserRouter([
   {
@@ -22,7 +30,10 @@ const Router = createBrowserRouter([
       },
       {
         path: "add",
-        element: <Add />,
+        element:
+          <ModOrAdminPage>
+         <Add />,
+         </ModOrAdminPage>
       },
       {
         path: "edit/:id",
@@ -41,18 +52,12 @@ const Router = createBrowserRouter([
         path: "notAllowed",
         element: <NotAllowed />,
       },
-    ],
-  },
-
-  {
-    path: "/dashboard",
-    element: <div>Adimin</div>,
-    children: [
       {
-        path: "Admin",
-        element: <div>Dashboard User</div>,
+        path: "userProfile",
+        element: <UserProfile />,
       },
     ],
   },
+
 ]);
 export default Router;

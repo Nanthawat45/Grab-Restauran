@@ -8,14 +8,17 @@ const Box = ({id, imageUrl, name, type }) => {
 
   const handleDelete = async (id) =>{
     try {
-      const response = await  RestaurantService.editRestaurant(id)
-    if(response === 200){
+      //ไม่ใช่ RestaueantService.editRestaurant(id) เป็น RestaurantService.deleteRestaurant(id) ไปดูฟังก์ชัน api in restaurant.service 
+      const response = await  RestaurantService.deleteRestaurant(id)
+      if (response.status === 200) {
         Swal.fire({
-          position: "center",
           icon: "success",
-          title: `Restaurant Delete`,
+          title: "Deleted!",
           text: response.data.message,
-          timer: 1500,
+          position: "center",
+          timer: 7000,
+        }).then(() => {
+          window.location.reload();
         });
       }
     }catch(error){

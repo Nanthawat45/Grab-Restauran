@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
+
 const UserProfile = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -30,11 +31,14 @@ const UserProfile = () => {
     <div>
       <div className="hero my-40">
         <div className="hero-content flex-col lg:flex-row-reverse">
+          <figure>
           <img
             src="https://raw.githubusercontent.com/TanKittipat/TailwindcssWebWork1/Restful-api/src/assets/profile2.jpg"
             className="max-w-sm rounded-lg shadow-2xl"
           />
+          </figure>
           <div className="w-96">
+            <h2 className="card-title">UserProfile</h2>
             <h1 className="text-5xl font-bold">
               <span className="text-violet-800">{user.username}</span> Profile
             </h1>
@@ -60,9 +64,9 @@ const UserProfile = () => {
                 )}
               </span>
             </p>
-            <button className="btn btn-secondary" onClick={handleBack}>
+            <a className="btn btn-secondary" href="/">
               Go back
-            </button>
+            </a>
           </div>
         </div>
       </div>
