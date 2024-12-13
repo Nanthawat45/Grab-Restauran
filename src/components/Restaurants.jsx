@@ -1,34 +1,26 @@
-import React from 'react'
-import Card from './Card'
-import { useEffect, useState } from 'react'
+import React from "react";
+import Box from "./Box";
+import { useState, useEffect } from "react";
 
-const Restaurants = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  useEffect(()=>{
-    fetch("http://localhost:5173/restaurants")
-    .then((res) => {
-      return res.json();
-    });
-  },[])
-
-   
+const Restaurants = ({ restaurants }) => {
   return (
-    <div className="flex">
-      <div className="flex flex-warp justify-ceter gap-4">
-        {restaurants &&
-          restaurants.map((restaurant) => {
-            return (
-              <Card
-                key={restaurant.id}
-                img={restaurant.img}
-                title={restaurant.title}
-                type={restaurant.type}
-              />
-            );
-          })}
-      </div>
+    <div className="flex flex-wrap justify-center gap-4">
+      {restaurants &&
+        restaurants.map((restaurant) => {
+          return (
+            <Box
+              key={restaurant.id}
+              id={restaurant.id}
+              //เปลี่ยนชื่อด้วนะจ๊าสาวน้อย imageUrl เนอะ ไม่ใช่ img
+              imageUrl={restaurant.imageUrl}
+              
+              name={restaurant.name}
+              type={restaurant.type}
+            />
+          );
+        })}
     </div>
   );
-}
+};
 
-export default Restaurants
+export default Restaurants;

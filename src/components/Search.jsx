@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
-const Search = () => {
+const Search = ({ restaurants, setFilteredRestaurants }) => {
+  const [keyword, setKeyword] = useState("");
+
+  const handleChange = async(e) => {
+    setKeyword(e.target.value);
+    if (e.target.value === "") {
+      setFilteredRestaurants(restaurants);
+      return;
+    }
+    const result = restaurants.filter((restaurant) => {
+      return (
+        restaurant.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        restaurant.type.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    });
+    console.log(result);
+    setFilteredRestaurants(result);
+  };
+
   return (
-    <div>
+    <div className="mb-5">
       <label className="input input-bordered flex items-center gap-2">
-        <input type="text" className="grow" placeholder="Search" />
+        <input 
+        type="text" 
+        className="grow" 
+        placeholder="Search" 
+        onChange={handleChange} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -20,6 +42,6 @@ const Search = () => {
       </label>
     </div>
   );
-}
+};
 
-export default Search
+export default Search;
